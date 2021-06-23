@@ -1,9 +1,11 @@
-var express = require('express');
-var routes = require('./routes');
+const express = require('express');
+const routes = require('./routes');
 
-var app = express();
+const app = express();
 
 app.use(express.static('public'));
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
 app.use('/', routes);
 //view engine setup
 app.set('views', 'views');
@@ -14,7 +16,6 @@ app.listen(3000, function(){
 });
 
 app.get('/', function (req, res) {
-    // res.send('Hello World');
     res.sendFile('index.html')
 }); 
 
